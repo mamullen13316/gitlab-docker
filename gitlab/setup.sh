@@ -36,7 +36,3 @@ sleep ${gitlab_wait_time}
 docker-compose exec runner1 gitlab-runner register 2>&1 >> gitlab_setup.log
 success
 
-# printf "Creating user 'developer' ..."
-# create_gitlab_token 2>&1 >> gitlab_setup.log
-# curl -s --header "PRIVATE-TOKEN: $personal_access_token" -d "email=developer@lab.devnetsandbox.local&password=C1sco12345&username=developer&name=developer&skip_confirmation=true" "${gitlab_host}/api/v4/users" 2>&1 >> gitlab_setup.log
-# success

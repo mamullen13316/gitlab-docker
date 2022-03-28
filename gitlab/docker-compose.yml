@@ -6,16 +6,13 @@ services:
     restart: always
     image: "gitlab/gitlab-ce:14.7.6-ce.0"
     hostname: gitlab
-    # volumes:
-    #   - ./container-data/gitlab/etc/gitlab:/etc/gitlab
-    #   - ./container-data/gitlab/data/gitlab:/var/opt/gitlab
     volumes:
       - gitlab-config:/etc/gitlab
       - gitlab-data:/var/opt/gitlab
     ports:
         - "80:80"
     environment:
-      - GITLAB_ROOT_PASSWORD=C1sco12345
+      - GITLAB_ROOT_PASSWORD="${GITLAB_PASSWORD}"
       - GITLAB_SHARED_RUNNERS_REGISTRATION_TOKEN=sandboxrunners
       - GITLAB_HOST=http://localhost
       - VIRTUAL_HOST=localhost

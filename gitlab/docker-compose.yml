@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+
+  gitlab:
+    restart: always
+    image: "gitlab/gitlab-ce:14.7.6-ce.0"
+    hostname: gitlab
+    # volumes:
+    #   - ./container-data/gitlab/etc/gitlab:/etc/gitlab
+    #   - ./container-data/gitlab/data/gitlab:/var/opt/gitlab
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-data:/var/opt/gitlab
+    ports:
+        - "80:80"
+    environment:
+      - GITLAB_ROOT_PASSWORD=C1sco12345
+      - GITLAB_SHARED_RUNNERS_REGISTRATION_TOKEN=sandboxrunners
+      - GITLAB_HOST=http://localhost
+      - VIRTUAL_HOST=localhost
+
+  runner1:
+    restart: always
+    image: "gitlab/gitlab-runner:v14.9.0"
+    environment:
+      - REGISTRATION_TOKEN=sandboxrunners
+      - RUNNER_NAME=runner1
+      - RUNNER_EXECUTOR=docker
+      - CI_SERVER_URL=http://gitlab
+      - CLONE_URL=http://gitlab
+      - REGISTER_NON_INTERACTIVE=true
+      - DOCKER_IMAGE=alpine
+      - DOCKER_PULL_POLICY=if-not-present
+
+volumes:
+  gitlab-config: 
+    driver: local 
+  gitlab-data: 
+    driver: local
+

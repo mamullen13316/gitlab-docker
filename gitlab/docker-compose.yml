@@ -29,6 +29,8 @@ services:
       - REGISTER_NON_INTERACTIVE=true
       - DOCKER_IMAGE=alpine
       - DOCKER_PULL_POLICY=if-not-present
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   gitlab-config: 

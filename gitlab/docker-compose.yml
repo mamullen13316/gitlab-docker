@@ -12,10 +12,10 @@ services:
     ports:
         - "80:80"
     environment:
-      - GITLAB_ROOT_PASSWORD="${GITLAB_PASSWORD}"
+      - GITLAB_ROOT_PASSWORD=${GITLAB_PASSWORD}
       - GITLAB_SHARED_RUNNERS_REGISTRATION_TOKEN=sandboxrunners
-      - GITLAB_HOST=http://"${GITLAB_HOST}"
-      - VIRTUAL_HOST="${GITLAB_HOST}"
+      - GITLAB_HOST=http://${GITLAB_HOST}
+      - VIRTUAL_HOST=${GITLAB_HOST}
 
   runner1:
     restart: always

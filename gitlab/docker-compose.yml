@@ -29,8 +29,11 @@ services:
       - REGISTER_NON_INTERACTIVE=true
       - DOCKER_IMAGE=alpine
       - DOCKER_PULL_POLICY=if-not-present
+      - DOCKER_EXTRA_HOSTS=gitlab:${GITLAB_HOST}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    extra_hosts:
+      - "gitlab:${GITLAB_HOST}"
 
 volumes:
   gitlab-config: 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-gitlab_host="http://localhost"
+gitlab_host="http://$GITLAB_HOST"
 gitlab_user="$GITLAB_USER"
 gitlab_password="$GITLAB_PASSWORD"
 gitlab_wait_time=45
